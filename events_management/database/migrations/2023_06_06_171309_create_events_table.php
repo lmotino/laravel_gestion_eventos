@@ -12,10 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->event_id();
+            $table->string('title');
+            $table->text('description');
+            $table->date('date');
+            $table->foreignId('location_id')
+                    ->nullable()
+                    ->constrained('locations')
+                    ->cascadeOnUpdate();
+            $table->foreignId('category_id')
+                    ->nullable()
+                    ->constrained('categories')
+                    ->cascadeOnUpdate();
             $table->timestamps();
         });
-    }
+    }   
 
     /**
      * Reverse the migrations.

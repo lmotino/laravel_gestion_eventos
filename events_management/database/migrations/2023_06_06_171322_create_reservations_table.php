@@ -12,10 +12,23 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
+            $table->reservation_id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->date('reservation_date');
+            $table->foreignId('user_id')
+                    ->nullable()
+                    ->constrained('users')
+                    ->cascadeOnUpdate();
+            $table->foreignId('event_id')
+                    ->nullable()
+                    ->constrained('events')
+                    ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
+   
 
     /**
      * Reverse the migrations.

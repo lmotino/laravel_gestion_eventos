@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('event_tags', function (Blueprint $table) {
-            $table->id();
+            $table->event_tags_id();
+            $table->foreignId('event_id')
+                    ->nullable()
+                    ->constrained('events')
+                    ->cascadeOnUpdate();
+            $table->foreignId('tag_id')
+                    ->nullable()
+                    ->constrained('tags')
+                    ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
