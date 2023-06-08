@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('event_resources', function (Blueprint $table) {
-            $table->event_resource_id();
+            $table->id();
             $table->foreignId('event_id')
                     ->nullable()
                     ->constrained('events')
