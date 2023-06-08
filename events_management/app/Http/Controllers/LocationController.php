@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\locations;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -12,6 +13,8 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $locations = locations::all();
+        return $locations;
     }
 
     /**

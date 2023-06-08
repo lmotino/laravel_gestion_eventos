@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\categories;
 
 class CategorieController extends Controller
 {
@@ -12,6 +13,8 @@ class CategorieController extends Controller
     public function index()
     {
         //
+        $categories = categories::all();
+        return $categories;
     }
 
     /**
@@ -20,6 +23,9 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         //
+        $categorie = new categories();
+        $categorie->name = $request->name;
+        $categorie->save();
     }
 
     /**
@@ -28,6 +34,9 @@ class CategorieController extends Controller
     public function show(string $id)
     {
         //
+        $categorie = categories::findOrFail($id);
+        return $categorie;
+
     }
 
     /**
@@ -36,6 +45,11 @@ class CategorieController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $categorie = categories::findOrFail($id);
+        $categorie = new categories();
+        $categorie->name = $request->name;
+        $categorie->save();
+        return $categorie;
     }
 
     /**
@@ -44,5 +58,7 @@ class CategorieController extends Controller
     public function destroy(string $id)
     {
         //
+        $categorie = categories::destroy($id);
+        return $categorie;
     }
 }
