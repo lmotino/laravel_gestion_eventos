@@ -37,4 +37,7 @@ Route::resource('tags',TagController::class)
 //routes for locations
 Route::resource('locations',LocationController::class)
         ->only(['index','show','store','update','destroy']);
-Route::put('/locations/{id}', [LocationController::class, 'update']);
+
+//routes for event_resources
+Route::resource('event_resources',LocationController::class)
+->only(['index','show','store','update','destroy']);

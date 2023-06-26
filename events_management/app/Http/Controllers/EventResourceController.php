@@ -58,5 +58,7 @@ class EventResourceController extends Controller
     public function destroy(string $id)
     {
         //
+        $eventresource = event_resources::destroy($id);
+        return $eventresource;
     }
 }
