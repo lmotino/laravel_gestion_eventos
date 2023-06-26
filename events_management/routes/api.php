@@ -4,6 +4,8 @@ use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\EventResourceController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +41,9 @@ Route::resource('locations',LocationController::class)
         ->only(['index','show','store','update','destroy']);
 
 //routes for event_resources
-Route::resource('event_resources',LocationController::class)
+Route::resource('event_resources',EventResourceController::class)
+->only(['index','show','store','update','destroy']);
+
+//routes for user
+Route::resource('users',UserController::class)
 ->only(['index','show','store','update','destroy']);
