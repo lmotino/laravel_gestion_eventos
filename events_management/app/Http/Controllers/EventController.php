@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\events;
 
 class EventController extends Controller
 {
@@ -12,6 +13,8 @@ class EventController extends Controller
     public function index()
     {
         //
+        $events = events::all();
+        return $events;
     }
 
     /**
@@ -20,6 +23,13 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+        $events = new events();
+        $events->title = $request->title;
+        $events->description = $request->description;
+        $events->date = $request->date;
+        $events->location_id = $request->location_id;
+        $events->category_id = $request->category_id;
+        $events->save();
     }
 
     /**
@@ -28,6 +38,8 @@ class EventController extends Controller
     public function show(string $id)
     {
         //
+        $events = events::findOrFail($id);
+        return $events;
     }
 
     /**
@@ -36,6 +48,13 @@ class EventController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $events = events::find($id);
+        $events->title = $request->title;
+        $events->description = $request->description;
+        $events->date = $request->date;
+        $events->location_id = $request->location_id;
+        $events->category_id = $request->category_id;
+        $events->save();
     }
 
     /**
@@ -44,5 +63,7 @@ class EventController extends Controller
     public function destroy(string $id)
     {
         //
+        $events = events::destroy($id);
+        return $events;
     }
 }

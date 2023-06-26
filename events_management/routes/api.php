@@ -7,6 +7,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\EventResourceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventTagController;
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,10 @@ Route::resource('event_resources',EventResourceController::class)
 Route::resource('users',UserController::class)
         ->only(['index','show','store','update','destroy']);
 
-//routes for user
+//routes for eventTag
 Route::resource('event_tags',EventTagController::class)
+        ->only(['index','show','store','update','destroy']);
+
+//routes for events
+Route::resource('events',EventController::class)
         ->only(['index','show','store','update','destroy']);
