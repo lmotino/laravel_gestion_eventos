@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\reservations;
 
 class ReservationController extends Controller
 {
@@ -12,6 +13,8 @@ class ReservationController extends Controller
     public function index()
     {
         //
+        $reservations = reservations::all();
+        return $reservations;
     }
 
     /**
@@ -20,6 +23,15 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         //
+        $reservations = new reservations();
+        $reservations->dni = $request->dni;
+        $reservations->name = $request->name;
+        $reservations->email = $request->email;
+        $reservations->phone = $request->phone;
+        $reservations->reservation_date = $request->reservation_date;
+        $reservations->user_id = $request->user_id;
+        $reservations->event_id = $request->event_id; 
+        $reservations->save();
     }
 
     /**
@@ -28,6 +40,8 @@ class ReservationController extends Controller
     public function show(string $id)
     {
         //
+        $reservations = reservations::findOrFail($id);
+        return $reservations;
     }
 
     /**
@@ -36,6 +50,15 @@ class ReservationController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $reservations = reservations::find($id);
+        $reservations->dni = $request->dni;
+        $reservations->name = $request->name;
+        $reservations->email = $request->email;
+        $reservations->phone = $request->phone;
+        $reservations->reservation_date = $request->reservation_date;
+        $reservations->user_id = $request->user_id;
+        $reservations->event_id = $request->event_id; 
+        $reservations->save();
     }
 
     /**
@@ -44,5 +67,7 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         //
+        $reservations = reservations::destroy($id);
+        return $reservations;
     }
 }

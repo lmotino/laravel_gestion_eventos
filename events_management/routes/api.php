@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventTagController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,4 +62,8 @@ Route::resource('events',EventController::class)
 
 //routes for payments
 Route::resource('payments',PaymentController::class)
+        ->only(['index','show','store','update','destroy']);
+
+//routes for reservations
+Route::resource('reservations',ReservationControllerController::class)
         ->only(['index','show','store','update','destroy']);
