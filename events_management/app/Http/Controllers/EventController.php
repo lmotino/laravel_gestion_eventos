@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\events;
 
 class EventController extends Controller
@@ -13,7 +14,14 @@ class EventController extends Controller
     public function index()
     {
         //
-        $events = events::all();
+        //$events = events::all();
+        //return $events;
+        $events = DB::table('categories')
+            ->join('events', 'categories.id', '=', 'events.category_id')
+            ->join('event_resources', 'events.id', '=', 'event_resources.event_id')
+            ->join('resources', 'resources.id', '=', 'event_resources.resource_id')
+            ->select('events.title', 'events.description', 'categories.name', 'resources.name')
+            ->get();
         return $events;
     }
 
