@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\reservations;
 
 class ReservationController extends Controller
@@ -13,8 +14,16 @@ class ReservationController extends Controller
     public function index()
     {
         //
-        $reservations = reservations::all();
+        //$reservations = reservations::all();
+        //return $reservations;
+
+        $reservations = DB::table('events')
+            ->join('reservations', 'events.id', '=', 'reservations.event_id')
+            ->join('payments', 'reservations.id', '=', 'payments.reservation_id')
+            ->select('events.title', 'reservations.name', 'reservations.reservation_date', 'payments.deposit','payments.pending_payment')
+            ->get();
         return $reservations;
+
     }
 
     /**
