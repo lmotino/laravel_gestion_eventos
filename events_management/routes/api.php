@@ -3,6 +3,7 @@
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,3 +33,8 @@ Route::resource('categories',CategorieController::class)
 //routes for tag
 Route::resource('tags',TagController::class)
         ->only(['index','show','store','update','destroy']);
+
+//routes for locations
+Route::resource('locations',LocationController::class)
+        ->only(['index','show','store','update','destroy']);
+Route::put('/locations/{id}', [LocationController::class, 'update']);

@@ -14,7 +14,7 @@ class TagController extends Controller
     {
         //
         $tags = tags::all();
-        return $tags;
+        return $tags; 
     }
 
     /**
@@ -44,8 +44,7 @@ class TagController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $tag = tags::findOrFail($id);
-        $tag = new tags();
+        $tag = tags::find($id);
         $tag->name = $request->name;
         $tag->save();
         return $tag;

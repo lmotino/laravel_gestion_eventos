@@ -45,7 +45,7 @@ class ResourceController extends Controller
     public function update(Request $request, string $id)
     {
         //update por id
-        $resource = resources::findOrFail($id);
+        $resource = resources::find($id);
         $resource->name = $request->name;
         $resource->save();
         return $resource;

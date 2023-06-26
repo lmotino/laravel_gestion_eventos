@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\event_resources;
 use Illuminate\Http\Request;
 
 class EventResourceController extends Controller
@@ -12,6 +13,8 @@ class EventResourceController extends Controller
     public function index()
     {
         //
+        $eventresource = event_resources::all();
+        return $eventresource;
     }
 
     /**
@@ -20,6 +23,10 @@ class EventResourceController extends Controller
     public function store(Request $request)
     {
         //
+        $eventresource = new event_resources();
+        $eventresource->resource_id = $request->resource_id;
+        $eventresource->event_id = $request->event_id;
+        $eventresource->save();
     }
 
     /**
@@ -28,6 +35,8 @@ class EventResourceController extends Controller
     public function show(string $id)
     {
         //
+        $eventresource = event_resources::findOrFail($id);
+        return $eventresource;
     }
 
     /**
@@ -36,6 +45,11 @@ class EventResourceController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $eventresource = event_resources::find($id);
+        $eventresource->resource_id = $request->resource_id;
+        $eventresource->event_id = $request->event_id;
+        $eventresource->save();
+        return $eventresource;
     }
 
     /**

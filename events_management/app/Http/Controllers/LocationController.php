@@ -23,6 +23,10 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         //
+        $location = new locations();
+        $location->name = $request->name;
+        $location->address = $request->address;
+        $location->save();
     }
 
     /**
@@ -31,6 +35,8 @@ class LocationController extends Controller
     public function show(string $id)
     {
         //
+        $location = locations::findOrFail($id);
+        return $location;
     }
 
     /**
@@ -39,6 +45,11 @@ class LocationController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $location = locations::find($id);
+        $location->name = $request->name;
+        $location->address = $request->address;
+        $location->save();
+        return $location;
     }
 
     /**
@@ -47,5 +58,7 @@ class LocationController extends Controller
     public function destroy(string $id)
     {
         //
+        $location = locations::destroy($id);
+        return $location;
     }
 }

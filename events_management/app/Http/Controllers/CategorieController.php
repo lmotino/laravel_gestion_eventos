@@ -45,8 +45,7 @@ class CategorieController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $categorie = categories::findOrFail($id);
-        $categorie = new categories();
+        $categorie = categories::find($id);
         $categorie->name = $request->name;
         $categorie->save();
         return $categorie;
