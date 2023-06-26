@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\event_tags;
 
 class EventTagController extends Controller
 {
@@ -12,6 +13,8 @@ class EventTagController extends Controller
     public function index()
     {
         //
+        $eventTag = event_tags::all();
+        return $eventTag;
     }
 
     /**
@@ -20,6 +23,12 @@ class EventTagController extends Controller
     public function store(Request $request)
     {
         //
+        $eventTag = new event_tags();
+        $eventTag->name = $request->name;
+        $eventTag->email = $request->email;
+        $eventTag->password = $request->password;
+        $eventTag->phoneNumber = $request->phoneNumber;
+        $eventTag->save();
     }
 
     /**
@@ -28,6 +37,8 @@ class EventTagController extends Controller
     public function show(string $id)
     {
         //
+        $eventTag = event_tags::findOrFail($id);
+        return $eventTag;
     }
 
     /**
@@ -36,6 +47,12 @@ class EventTagController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $eventTag = event_tags::find($id);
+        $eventTag->name = $request->name;
+        $eventTag->email = $request->email;
+        $eventTag->password = $request->password;
+        $eventTag->phoneNumber = $request->phoneNumber;
+        $eventTag->save();
     }
 
     /**
@@ -44,5 +61,7 @@ class EventTagController extends Controller
     public function destroy(string $id)
     {
         //
+        $eventTag = event_tags::destroy($id);
+        return $eventTag;
     }
 }
