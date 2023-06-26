@@ -24,7 +24,7 @@ class ReservationController extends Controller
     {
         //
         $reservations = new reservations();
-        $reservations->dni = $request->dni;
+        $reservations->DNI = $request->DNI;
         $reservations->name = $request->name;
         $reservations->email = $request->email;
         $reservations->phone = $request->phone;
@@ -51,7 +51,7 @@ class ReservationController extends Controller
     {
         //
         $reservations = reservations::find($id);
-        $reservations->dni = $request->dni;
+        $reservations->DNI = $request->DNI;
         $reservations->name = $request->name;
         $reservations->email = $request->email;
         $reservations->phone = $request->phone;

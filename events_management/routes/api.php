@@ -65,5 +65,5 @@ Route::resource('payments',PaymentController::class)
         ->only(['index','show','store','update','destroy']);
 
 //routes for reservations
-Route::resource('reservations',ReservationControllerController::class)
-        ->only(['index','show','store','update','destroy']);
+Route::resource('reservations',ReservationController::class)
+        ->only(['index','show','store','update','destroy']); 
