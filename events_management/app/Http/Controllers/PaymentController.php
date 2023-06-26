@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\payments;
 
 class PaymentController extends Controller
 {
@@ -12,6 +13,8 @@ class PaymentController extends Controller
     public function index()
     {
         //
+        $payment = payments::all();
+        return $payment;
     }
 
     /**
@@ -20,6 +23,13 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         //
+        $payment = new payments();
+        $payment->user_id = $request->user_id;
+        $payment->reservation_id = $request->reservation_id;
+        $payment->deposit = $request->deposit;
+        $payment->pending_payment = $request->pending_payment;
+        $payment->payment_date = $request->payment_date;
+        $payment->save();
     }
 
     /**
@@ -28,6 +38,8 @@ class PaymentController extends Controller
     public function show(string $id)
     {
         //
+        $payment = payments::findOrFail($id);
+        return $payment;
     }
 
     /**
@@ -36,13 +48,21 @@ class PaymentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $payment = payments::find($id);
+        $payment->user_id = $request->user_id;
+        $payment->reservation_id = $request->reservation_id;
+        $payment->deposit = $request->deposit;
+        $payment->pending_payment = $request->pending_payment;
+        $payment->payment_date = $request->payment_date;
+        $payment->save();
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
+        $payment = payments::destroy($id);
+        return $payment;
     }
 }
